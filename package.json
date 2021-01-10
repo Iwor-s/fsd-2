@@ -1,0 +1,29 @@
+{
+  "name": "fsd",
+  "version": "1.0.0",
+  "description": "FSD stage-2",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+		"dev": "webpack --mode development --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Iwor-s/fsd-2.git"
+  },
+  "keywords": [],
+  "author": "Iw <iwor@list.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Iwor-s/fsd-2/issues"
+  },
+  "homepage": "https://github.com/Iwor-s/fsd-2#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^5.0.0-beta.4",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.12.2",
+    "webpack-cli": "^4.3.1"
+  }
+}
