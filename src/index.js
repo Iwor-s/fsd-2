@@ -1,4 +1,3 @@
-import './styles/normalize.css';
 import './styles/style.sass';
 
 const color = document.querySelectorAll('.colors__color');
