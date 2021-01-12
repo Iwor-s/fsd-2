@@ -32,9 +32,22 @@ module.exports = {
 			},
 			{
 				test: /\.(eot|[ot]tf|woff2?|svg)$/,
+				include: [
+					path.resolve(__dirname, 'src/assets/fonts')
+				],
 				type: 'asset/resource',
 				generator: {
 					filename: 'assets/fonts/[name][ext]'
+				}
+			},
+			{
+				test: /\.(jpe?|pn|sv)g$/,
+				include: [
+					path.resolve(__dirname, 'src/assets/img')
+				],
+				type: 'asset/resource',
+				generator: {
+					filename: 'assets/img/[name][ext]'
 				}
 			}
 		]
