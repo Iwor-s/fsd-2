@@ -10,33 +10,33 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./styles/style.sass":
-/*!***************************!*\
-  !*** ./styles/style.sass ***!
-  \***************************/
+/***/ "./src/styles/style.sass":
+/*!*******************************!*\
+  !*** ./src/styles/style.sass ***!
+  \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./styles/style.sass?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://fsd/./src/styles/style.sass?");
 
 /***/ }),
 
-/***/ "./styles/normalize.css":
-/*!******************************!*\
-  !*** ./styles/normalize.css ***!
-  \******************************/
+/***/ "./src/styles/normalize.css":
+/*!**********************************!*\
+  !*** ./src/styles/normalize.css ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack:///./styles/normalize.css?");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://fsd/./src/styles/normalize.css?");
 
 /***/ }),
 
-/***/ "./index.js":
-/*!******************!*\
-  !*** ./index.js ***!
-  \******************/
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_normalize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/normalize.css */ \"./styles/normalize.css\");\n/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/style.sass */ \"./styles/style.sass\");\n\r\n\r\n\r\nconst color = document.querySelectorAll('.colors__color');\r\n\r\ncolor.forEach(item => {\r\n\titem.addEventListener('click', e => console.log(e))\r\n});\n\n//# sourceURL=webpack:///./index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_normalize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/normalize.css */ \"./src/styles/normalize.css\");\n/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/style.sass */ \"./src/styles/style.sass\");\n\r\n\r\n\r\nconst color = document.querySelectorAll('.colors__color');\r\n\r\ncolor.forEach(item => {\r\n\titem.addEventListener('click', e => console.log(e))\r\n});\n\n//# sourceURL=webpack://fsd/./src/index.js?");
 
 /***/ })
 
@@ -80,7 +80,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sty
 /************************************************************************/
 /******/ 	// startup
 /******/ 	// Load entry module
-/******/ 	__webpack_require__("./index.js");
+/******/ 	__webpack_require__("./src/index.js");
 /******/ 	// This entry module used 'exports' so it can't be inlined
 /******/ })()
 ;

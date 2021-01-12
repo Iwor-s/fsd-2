@@ -4,37 +4,49 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-	context: path.resolve(__dirname, 'src'),
 	mode: 'development',
-	entry: './index.js',
+	entry: './src/index.js',
 	output: {
 		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, 'dist'),
+		publicPath: './'
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
-			template: './colors & type.html'
+			template: './src/colors & type.html'
 		}),
-		new CleanWebpackPlugin,
-		new MiniCssExtractPlugin
+		// new CleanWebpackPlugin,
+		new MiniCssExtractPlugin({
+			filename: '[name].css'
+		}),
 	],
 	module: {
 		rules: [
 			{
 				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader'
-				]
+				use: css()
 			},
 			{
 				test: /\.s[ac]ss$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					'css-loader',
-					'sass-loader'
-				]
+				use: css('sass-loader')
+			},
+			{
+				test: /\.(eot|[ot]tf|woff2?|svg)$/,
+				type: 'asset/resource',
+				generator: {
+					filename: 'assets/fonts/[name][ext]'
+				}
 			}
 		]
 	}
+}
+
+function css(loader) {
+	const loaders = [
+		MiniCssExtractPlugin.loader,
+		'css-loader'
+	];
+	
+	if (loader) loaders.push(loader);
+	return loaders;
 }
