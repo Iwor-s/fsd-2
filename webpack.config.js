@@ -15,7 +15,7 @@ module.exports = {
 		new HTMLWebpackPlugin({
 			template: './src/colors & type.html'
 		}),
-		// new CleanWebpackPlugin,
+		new CleanWebpackPlugin,
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
 		}),

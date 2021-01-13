@@ -2,7 +2,7 @@
   "name": "fsd",
   "version": "1.0.0",
   "description": "FSD stage-2",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack --mode development",
