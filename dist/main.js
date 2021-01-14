@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.sass */ \"./src/styles/style.sass\");\n\r\n\r\nconst color = document.querySelectorAll('.colors__color');\r\n\r\ncolor.forEach(item => {\r\n\titem.addEventListener('click', e => console.log(e))\r\n});\n\n//# sourceURL=webpack://fsd/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_style_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/styles/style.sass */ \"./src/styles/style.sass\");\n\r\n\r\nconst color = document.querySelectorAll('.colors__color');\r\n\r\ncolor.forEach(item => {\r\n\titem.addEventListener('click', e => console.log(e))\r\n});\n\n//# sourceURL=webpack://fsd/./src/index.js?");
 
 /***/ })
 

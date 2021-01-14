@@ -1,4 +1,4 @@
-import './styles/style.sass';
+import '@/styles/style.sass';
 
 const color = document.querySelectorAll('.colors__color');
 

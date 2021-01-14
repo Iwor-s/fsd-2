@@ -9,7 +9,21 @@ module.exports = {
 	output: {
 		filename: 'main.js',
 		path: path.resolve(__dirname, 'dist'),
-		publicPath: './'
+		publicPath: '/'
+	},
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, 'src')
+		}
+	},
+	devServer: {
+		// historyApiFallback: true,
+		// contentBase: path.resolve(__dirname, 'dist'),
+		// compress: true,
+		// hot: true,  // не работает с html
+		writeToDisk: true,
+		open: true,
+		port: 8080,
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
