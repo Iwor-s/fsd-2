@@ -6,12 +6,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
 	mode: 'development',
 	devtool: 'source-map',
-	entry: {
-		main: './src/index.js'
-	},
+	// entry: { main: './src/index.js' },     // by default
 	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, 'dist'),
+		// filename: '[name].js',               // by default
+		path: path.resolve(__dirname, 'dist'),  // for CleanWebpackPlugin
 		publicPath: './'
 	},
 	resolve: {
@@ -23,7 +21,7 @@ module.exports = {
 		publicPath: '/',
 		overlay: true,
 		writeToDisk: true,
-		// hot: true,  // не работает с html
+		// hot: true,                           // не работает с html
 		// open: true,
 		port: 8080,
 	},
@@ -85,7 +83,17 @@ module.exports = {
 function css(loader) {
 	const loaders = [
 		MiniCssExtractPlugin.loader,
-		'css-loader'
+		'css-loader',
+		{
+			loader: "postcss-loader",
+			options: {
+				postcssOptions: {
+					plugins: [
+						'autoprefixer'
+					]
+				}
+			}
+		}
 	];
 	
 	if (loader) loaders.push(loader);
