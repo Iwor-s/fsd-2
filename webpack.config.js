@@ -5,11 +5,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	mode: 'development',
-	entry: './src/index.js',
+	devtool: 'source-map',
+	entry: {
+		main: './src/index.js'
+	},
 	output: {
-		filename: 'main.js',
+		filename: '[name].js',
 		path: path.resolve(__dirname, 'dist'),
-		publicPath: '/'
+		publicPath: './'
 	},
 	resolve: {
 		alias: {
@@ -17,19 +20,18 @@ module.exports = {
 		}
 	},
 	devServer: {
-		// historyApiFallback: true,
-		// contentBase: path.resolve(__dirname, 'dist'),
-		// compress: true,
-		// hot: true,  // не работает с html
+		publicPath: '/',
+		overlay: true,
 		writeToDisk: true,
-		open: true,
+		// hot: true,  // не работает с html
+		// open: true,
 		port: 8080,
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
 			template: './src/colors & type.html'
 		}),
-		new CleanWebpackPlugin,
+		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
 		}),
