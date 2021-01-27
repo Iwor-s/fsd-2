@@ -1,21 +1,22 @@
 @import '~normalize.css'
 @import vars
+@import mixins
 @import fonts
 
 *
 	box-sizing: border-box
 
 body
-	background: #fff
-	color: $color1
+	background: $color0
+	color: $mainFontColor
+	line-height: $mainLineHeight
 
 .container
 	max-width: 1160px
 	margin: 0 auto
 
 .logo
-	width: 48px
-	height: 48px
+	+size(48px)
 	background: url(@/assets/img/logo-gray.svg) no-repeat
 
 .header
@@ -57,8 +58,7 @@ body
 	
 	&__color
 		flex-shrink: 0
-		width: 70px
-		height: 70px
+		+size(70px)
 		border-radius: 6px
 	
 	&__desc
@@ -107,6 +107,6 @@ body
 		font-weight: 400
 	
 	&__text
-		max-width: 340px
+		max-width: 364px
 		margin-left: 30px
 		flex: 1 1 85%
