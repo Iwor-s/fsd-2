@@ -9,6 +9,7 @@
     "watch": "cross-env NODE_ENV=development webpack --watch",
     "start": "cross-env NODE_ENV=development webpack serve"
   },
+  "browserslist": ">1%, last 2 versions",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Iwor-s/fsd-2.git"

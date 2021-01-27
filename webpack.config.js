@@ -9,6 +9,7 @@ const isProd = !isDev;
 module.exports = {
 	mode: 'development',
 	devtool: isDev ? 'inline-source-map' : false,
+	target: isDev ? "web" : "browserslist",   // иначе не работает live reload
 	// entry: { main: './src/index.js' },     // by default
 	output: {
 		filename: filename('js'),
@@ -86,6 +87,10 @@ module.exports = {
 	}
 }
 
+function filename(ext) {
+	return isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`
+}
+
 function css(loader) {
 	const loaders = [
 		MiniCssExtractPlugin.loader,
@@ -101,12 +106,8 @@ function css(loader) {
 				],
 			}
 		}
-	}
+	};
 	if (isProd) loaders.push(postCssLoader);
 	if (loader) loaders.push(loader);
 	return loaders;
-}
-
-function filename(ext) {
-	return isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 }
