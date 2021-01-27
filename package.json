@@ -1,7 +1,7 @@
 {
-  "name": "fsd",
+  "name": "metalamp",
   "version": "1.0.0",
-  "description": "FSD stage-2",
+  "description": "MetaLamp stage-2",
   "private": true,
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --mode production",
@@ -12,15 +12,15 @@
   "browserslist": ">1%, last 2 versions",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Iwor-s/fsd-2.git"
+    "url": "git+https://github.com/Iwor-s/ml-2.git"
   },
   "keywords": [],
   "author": "Iw <iwor@list.ru>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Iwor-s/fsd-2/issues"
+    "url": "https://github.com/Iwor-s/ml-2/issues"
   },
-  "homepage": "https://github.com/Iwor-s/fsd-2#readme",
+  "homepage": "https://github.com/Iwor-s/ml-2#readme",
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
