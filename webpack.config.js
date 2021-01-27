@@ -3,12 +3,15 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const isDev = process.env.NODE_ENV === 'development';
+const isProd = !isDev;
+
 module.exports = {
 	mode: 'development',
-	devtool: 'source-map',
+	devtool: isDev ? 'inline-source-map' : false,
 	// entry: { main: './src/index.js' },     // by default
 	output: {
-		// filename: '[name].js',               // by default
+		filename: filename('js'),
 		path: path.resolve(__dirname, 'dist'),  // for CleanWebpackPlugin
 		publicPath: './'
 	},
@@ -19,11 +22,14 @@ module.exports = {
 	},
 	devServer: {
 		publicPath: '/',
-		overlay: true,
+		overlay: {
+			warnings: true,
+			errors: true
+		},
 		writeToDisk: true,
 		// hot: true,                           // не работает с html
 		// open: true,
-		port: 8080,
+		port: 8081,
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
@@ -31,8 +37,8 @@ module.exports = {
 		}),
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
-			filename: '[name].css'
-		}),
+			filename: filename('css')
+		})
 	],
 	module: {
 		rules: [
@@ -84,18 +90,23 @@ function css(loader) {
 	const loaders = [
 		MiniCssExtractPlugin.loader,
 		'css-loader',
-		{
-			loader: "postcss-loader",
-			options: {
-				postcssOptions: {
-					plugins: [
-						'autoprefixer'
-					]
-				}
+	];
+	const postCssLoader = {
+		loader: "postcss-loader",
+		options: {
+			postcssOptions: {
+				plugins: [
+					'autoprefixer',
+					'cssnano'
+				],
 			}
 		}
-	];
-	
+	}
+	if (isProd) loaders.push(postCssLoader);
 	if (loader) loaders.push(loader);
 	return loaders;
+}
+
+function filename(ext) {
+	return isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 }
