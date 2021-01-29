@@ -2,24 +2,32 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const fs = require('fs');
+
 
 const PATH = {
 	// 'path.resolve' doesn't need '__dirname'
+	dist: path.resolve('dist'),
 	src: path.resolve('src'),
-	dist: path.resolve('dist')
+	pages: path.resolve('src/pages')
 };
 
+const PAGES = fs.readdirSync(PATH.pages).filter(fileName => {
+	return fileName.endsWith('.html') || fileName.endsWith('.pug')
+});
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
+
 
 module.exports = {
 	mode: 'development',
 	devtool: isDev ? 'inline-source-map' : false,
 	entry: {
-		main: PATH.src                          // by default
+		main: PATH.src,
+		'colors & type': path.join(PATH.src, 'colors & type')
 	},
 	output: {
-		filename: filename('js'),               // by default
+		filename: filename('js'),
 		path: PATH.dist,                        // for CleanWebpackPlugin
 		publicPath: isDev ? './' : '/'          // to open 'index.html' without 'webpack serve'
 	},
@@ -36,20 +44,25 @@ module.exports = {
 			errors: true
 		},
 		writeToDisk: true,
-		// hot: true,                           // don't work with html
+		// hot: true,                           // doesn't work with html
 		// open: true,
 		port: 8081,
 	},
 	plugins: [
-		new HTMLWebpackPlugin({
-			template: path.join(PATH.src, 'colors & type.html'),
-			filename: 'colors & type.html'
-		}),
-		new HTMLWebpackPlugin({
-			template: path.join(PATH.src, 'example.pug'),
-			inject: true,
-			filename: 'index.html'
-		}),
+		// new HTMLWebpackPlugin({
+		// 	template: path.join(PATH.src, 'index.pug'),
+		// 	filename: 'index.html',
+		// 	chunks: ['main']
+		// }),
+		...PAGES.map(page => new HTMLWebpackPlugin({
+			template: path.join(PATH.pages, page),
+			filename: path.parse(page).name + '.html',
+			chunks: [
+				'main',
+				path.parse(page).name
+			]
+		})),
+		
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: filename('css')
