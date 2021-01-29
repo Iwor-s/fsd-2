@@ -3,24 +3,32 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const PATH = {
+	// 'path.resolve' doesn't need '__dirname'
+	src: path.resolve('src'),
+	dist: path.resolve('dist')
+};
+
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
 module.exports = {
 	mode: 'development',
 	devtool: isDev ? 'inline-source-map' : false,
-	target: isDev ? "web" : "browserslist",   // иначе не работает live reload
-	// entry: { main: './src/index.js' },     // by default
+	entry: {
+		main: PATH.src                          // by default
+	},
 	output: {
-		filename: filename('js'),
-		path: path.resolve(__dirname, 'dist'),  // for CleanWebpackPlugin
-		publicPath: './'
+		filename: filename('js'),               // by default
+		path: PATH.dist,                        // for CleanWebpackPlugin
+		publicPath: isDev ? './' : '/'          // to open 'index.html' without 'webpack serve'
 	},
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, 'src')
+			'@': PATH.src
 		}
 	},
+	target: isDev ? "web" : "browserslist",   // live reload don't work with 'browserslist'
 	devServer: {
 		publicPath: '/',
 		overlay: {
@@ -28,13 +36,19 @@ module.exports = {
 			errors: true
 		},
 		writeToDisk: true,
-		// hot: true,                           // не работает с html
+		// hot: true,                           // don't work with html
 		// open: true,
 		port: 8081,
 	},
 	plugins: [
 		new HTMLWebpackPlugin({
-			template: './src/colors & type.html'
+			template: path.join(PATH.src, 'colors & type.html'),
+			filename: 'colors & type.html'
+		}),
+		new HTMLWebpackPlugin({
+			template: path.join(PATH.src, 'example.pug'),
+			inject: true,
+			filename: 'index.html'
 		}),
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
@@ -56,6 +70,10 @@ module.exports = {
 				}
 			},
 			{
+				test: /\.pug$/,
+				loader: 'pug-loader'
+			},
+			{
 				test: /\.css$/,
 				use: css()
 			},
@@ -66,7 +84,7 @@ module.exports = {
 			{
 				test: /\.(eot|[ot]tf|woff2?|svg)$/,
 				include: [
-					path.resolve(__dirname, 'src/assets/fonts')
+					path.join(PATH.src, 'assets/fonts')
 				],
 				type: 'asset/resource',
 				generator: {
@@ -76,7 +94,7 @@ module.exports = {
 			{
 				test: /\.(jpe?|pn|sv)g$/,
 				include: [
-					path.resolve(__dirname, 'src/assets/img')
+					path.join(PATH.src, 'assets/img')
 				],
 				type: 'asset/resource',
 				generator: {
@@ -88,13 +106,13 @@ module.exports = {
 }
 
 function filename(ext) {
-	return isDev ? `[name].${ext}` : `[name].[contenthash].${ext}`
+	return isDev ? `[name].${ext}` : `[name].[contenthash:7].${ext}`
 }
 
 function css(loader) {
 	const loaders = [
 		MiniCssExtractPlugin.loader,
-		'css-loader',
+		'css-loader'
 	];
 	const postCssLoader = {
 		loader: "postcss-loader",
