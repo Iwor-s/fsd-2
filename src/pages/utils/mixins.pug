@@ -1,0 +1,12 @@
+mixin colorItem(extraClass, head, value)
+	.colors__item
+		.colors__color(class= extraClass)
+		.colors__desc
+			.color__name= head
+			.color__text= value
+
+mixin typeItem(head, desc)
+	.type__item
+		.type__head= head
+		.type__text= desc
+		

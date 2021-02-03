@@ -24,7 +24,7 @@ module.exports = {
 	devtool: isDev ? 'inline-source-map' : false,
 	entry: {
 		main: PATH.src,
-		'colors & type': path.join(PATH.src, 'colors & type')
+		'colors&type': path.join(PATH.pages, 'colors&type')
 	},
 	output: {
 		filename: filename('js'),
@@ -84,7 +84,10 @@ module.exports = {
 			},
 			{
 				test: /\.pug$/,
-				loader: 'pug-loader'
+				use: {
+					loader: 'pug-loader',
+					options: 'pretty'
+				}
 			},
 			{
 				test: /\.css$/,
@@ -106,8 +109,8 @@ module.exports = {
 			},
 			{
 				test: /\.(jpe?|pn|sv)g$/,
-				include: [
-					path.join(PATH.src, 'assets/img')
+				exclude: [
+					path.join(PATH.src, 'assets/fonts')
 				],
 				type: 'asset/resource',
 				generator: {
