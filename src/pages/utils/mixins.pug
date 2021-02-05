@@ -1,12 +1,15 @@
 mixin colorItem(extraClass, head, value)
-	.colors__item
-		.colors__color(class= extraClass)
-		.colors__desc
-			.color__name= head
-			.color__text= value
+	.colors__color-item.color-item
+		.color-item__color(class=extraClass)
+		.color-item__desc
+			h2.color-item__name= head
+			.color-item__text= value
 
 mixin typeItem(head, desc)
-	.type__item
-		.type__head= head
-		.type__text= desc
+	.type__type-item.type-item
+		.type-item__head(class= head)= head
+		.type-item__text
+			if head === 'body'
+				- head = 'p'
+			#{head}= desc
 		

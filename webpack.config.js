@@ -11,7 +11,6 @@ const PATH = {
 	src: path.resolve('src'),
 	pages: path.resolve('src/pages')
 };
-
 const PAGES = fs.readdirSync(PATH.pages).filter(fileName => {
 	return fileName.endsWith('.html') || fileName.endsWith('.pug')
 });
@@ -19,18 +18,22 @@ const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
 
 
+
 module.exports = {
 	mode: 'development',
 	devtool: isDev ? 'inline-source-map' : false,
+	
 	entry: {
 		main: PATH.src,
-		'colors&type': path.join(PATH.pages, 'colors&type')
+		'colors&type': path.join(PATH.pages, 'colors&type'),
+		'headers&footers': path.join(PATH.pages, 'headers&footers')
 	},
 	output: {
 		filename: filename('js'),
 		path: PATH.dist,                        // for CleanWebpackPlugin
-		publicPath: isDev ? './' : '/'          // to open 'index.html' without 'webpack serve'
+		publicPath: isDev ? './' : '/'          // to open html without 'webpack serve'
 	},
+	
 	resolve: {
 		alias: {
 			'@': PATH.src
@@ -86,7 +89,10 @@ module.exports = {
 				test: /\.pug$/,
 				use: {
 					loader: 'pug-loader',
-					options: 'pretty'
+					options: {
+						pretty: true,
+						root: PATH.pages
+					}
 				}
 			},
 			{

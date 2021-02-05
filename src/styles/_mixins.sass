@@ -1,11 +1,9 @@
 @function rem($pixels, $context: $mainFontSize)
 	@if (unitless($pixels))
 		$pixels: $pixels * 1px
-		
 	@if (unitless($context))
 		$context: $context * 1px
-		
-	@return $pixel / $context * 1rem
+	@return $pixels / $context * 1rem
 
 
 =size($width, $height: $width)

@@ -1,28 +1,28 @@
-extends ./layout/UI-kit
+extends /layout/UI-kit
 
 
 block variables
 	-
 		var title = 'Colors & Type'
-		var description = ''
+		var description = 'UI kit: colors & type'
 		var pageClass = 'colors-type'
 
 
 block content
-	
-	.flex-container
-		
-		.colors
-			+colorItem('color1', 'Dark Shade 100%', '#1F2041')
-			+colorItem('color1-75', 'Dark Shade 75%', '#1F2041')
-			+colorItem('color1-50', 'Dark Shade 50%', '#1F2041')
-			+colorItem('color1-25', 'Dark Shade 25%', '#1F2041')
-			+colorItem('color1-5', 'Dark Shade 5%', '#1F2041')
-			+colorItem('color2', 'Purple', '#BC9CFF')
-			+colorItem('color3', 'Green', '#6FCF97')
+	.container
+		.flex-container
 			
-		.type
-			+typeItem('H1', 'This one is the sub-section or widget title')
-			+typeItem('H2', 'Next one is the item title inside widgets')
-			+typeItem('H3', 'This is a label or CTA text')
-			+typeItem('Body', 'This is the body text which is used for most of the design, like paragraphs, lists, etc.')
+			.colors
+				+colorItem('color1', 'Dark Shade 100%', '#1F2041')
+				+colorItem('color1-75', 'Dark Shade 75%', '#1F2041')
+				+colorItem('color1-50', 'Dark Shade 50%', '#1F2041')
+				+colorItem('color1-25', 'Dark Shade 25%', '#1F2041')
+				+colorItem('color1-5', 'Dark Shade 5%', '#1F2041')
+				+colorItem('color2', 'Purple', '#BC9CFF')
+				+colorItem('color3', 'Green', '#6FCF97')
+				
+			.type
+				+typeItem('h1', 'This one is the sub-section or widget title')
+				+typeItem('h2', 'Next one is the item title inside widgets')
+				+typeItem('h3', 'This is a label or CTA text')
+				+typeItem('body', 'This is the body text which is used for most of\xA0the design, like paragraphs, lists, etc.')
