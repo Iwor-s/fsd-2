@@ -12,4 +12,7 @@ mixin typeItem(head, desc)
 			if head === 'body'
 				- head = 'p'
 			#{head}= desc
-		
+
+mixin menuItem(link, name, extraClass)
+	li
+		a.head-menu__link(href= link class= extraClass)= name

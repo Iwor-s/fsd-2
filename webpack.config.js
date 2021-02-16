@@ -39,7 +39,7 @@ module.exports = {
 			'@': PATH.src
 		}
 	},
-	target: isDev ? "web" : "browserslist",   // live reload don't work with 'browserslist'
+	target: isDev ? "web" : "browserslist",   // live reload doesn't work with 'browserslist'
 	devServer: {
 		publicPath: '/',
 		overlay: {
@@ -47,7 +47,7 @@ module.exports = {
 			errors: true
 		},
 		writeToDisk: true,
-		// hot: true,                           // doesn't work with html
+		// hot: true,                           // doesn't work with html/pug
 		// open: true,
 		port: 8081,
 	},
@@ -66,7 +66,9 @@ module.exports = {
 			]
 		})),
 		
-		new CleanWebpackPlugin(),
+		new CleanWebpackPlugin({
+			cleanOnceBeforeBuildPatterns: ['**/*', '!assets/**']
+		}),
 		new MiniCssExtractPlugin({
 			filename: filename('css')
 		})
@@ -133,7 +135,7 @@ function filename(ext) {
 
 function css(loader) {
 	const loaders = [
-		MiniCssExtractPlugin.loader,
+		isDev ? MiniCssExtractPlugin.loader : 'style-loader',
 		'css-loader'
 	];
 	const postCssLoader = {

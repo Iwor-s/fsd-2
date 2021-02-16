@@ -1,3 +1,19 @@
-
-.container
-	h1 HEADER
+.header
+	.container
+		.flex-container
+			
+			.header__logo
+				a(href='').logo
+				
+			nav.head-menu
+				ul
+					+menuItem('', 'О нас', 'head-menu__link_current')
+					+menuItem('', 'Услуги', 'arrow')
+					+menuItem('', 'Вакансии')
+					+menuItem('', 'Новости')
+					+menuItem('', 'Соглашения', 'arrow')
+				
+				.logIn-btns
+					.button войти
+					.button зарегистрироваться
+				

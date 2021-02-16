@@ -1,0 +1,59 @@
+@import @/styles/vars
+@import @/styles/mixins
+@import @/styles/extends
+
+.arrow::after
+	content: ""
+	display: inline-block
+	+size(6.5px)
+	border-left: 2px solid
+	border-bottom: 2px solid
+	transform: rotate(-45deg)
+	margin: 3px 9px
+
+.flex-container
+	display: flex
+	flex-wrap: wrap
+
+.header
+	padding: 15px 0
+	background-color: $mainBGcolor
+	&__logo
+		flex-grow: .5
+		margin: 0 12px 0 auto
+		
+.logo
+	display: block
+	+size(106px, 40px)
+	background: url(logo-full.svg) no-repeat
+	
+
+.head-menu
+	display: flex
+	justify-content: flex-end
+	align-items: center
+	flex-grow: .5
+	ul li
+		display: inline-block
+		text-align: center
+	
+	&__link
+		flex-shrink: 0
+		padding: 0 8px
+		margin: 0 2px
+		line-height: 40px
+		&_current
+			font-weight: 700
+
+.button
+	display: inline-block
+	margin: 0 10px
+	padding: 0 18px
+	@extend %h3
+	color: $color2
+	line-height: 30px
+	text-align: center
+	
+	border: 2px solid transparent
+	border-radius: 22px
+	background: linear-gradient($mainBGcolor, $mainBGcolor) padding-box, linear-gradient(to bottom, $color2, $color2-grad) border-box
