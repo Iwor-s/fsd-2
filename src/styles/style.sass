@@ -1,52 +1,33 @@
 // @import ~normalize.css
-@import vars
-@import mixins
+@import @/styles/vars
+@import @/styles/mixins
 @import @/styles/fonts
+@import @/styles/extends
 
 *
 	box-sizing: border-box
-
-html,
-body
-	width: 100%
-	min-width: 320px
-	height: 100%
-	background: $mainBGcolor
+a
+	text-decoration: none
+	color: inherit
 
 html,
 body,
 .body
-	font-family: Montserrat, sans-serif
-	font-weight: 400
-	font-size: $mainFontSize
-	line-height: $mainLineHeight
-	color: $mainFontColor
-
+	@extend %body
 h1,
 .h1
-	font-family: Quicksand, sans-serif
-	font-weight: 700
-	font-size: rem(24px)
-	line-height: rem(30px)
-	color: $headFontColor
-
+	@extend %h1
 h2,
 .h2
-	font-family: Quicksand, sans-serif
-	font-weight: 700
-	font-size: rem(19px)
-	line-height: rem(24px)
-	color: $headFontColor
-
+	@extend %h2
 h3,
 .h3
-	font-family: Montserrat, sans-serif
-	font-weight: 700
-	font-size: rem(12px)
-	line-height: rem(15px)
-	color: $headFontColor
-	text-transform: uppercase
+	@extend %h3
 
+body
+	min-width: 320px
+	min-height: 100vh
+	background: $mainBGcolor
 
 .container
 	margin: 0 auto
